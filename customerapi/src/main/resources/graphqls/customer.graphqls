@@ -5,9 +5,16 @@ type Customer{
   mobileNumber: Long
   dob: String
   email: String 
+  gender:Gender 
 
 }
 
+enum Gender{
+MALE
+FEMALE
+TRANSGENDER
+
+}
 type Address{
 addressId: ID!
 city: String

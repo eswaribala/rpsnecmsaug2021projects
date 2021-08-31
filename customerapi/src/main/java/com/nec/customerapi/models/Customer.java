@@ -45,9 +45,9 @@ public class Customer {
 	private long customerId;
 	@Embedded
 	private FullName name;
-	//@Enumerated(EnumType.STRING)
-	//@Column(name="Gender")
-	// Gender gender;
+	@Enumerated(EnumType.STRING)
+	@Column(name="Gender")
+	Gender gender;
 	@DateTimeFormat(iso = ISO.DATE)
 	  @JsonDeserialize(using = LocalDateDeserializer.class)
 	  @JsonSerialize(using = LocalDateSerializer.class)
