@@ -62,12 +62,12 @@ public class CustomerController {
     
   //http://localhost:7070/customers/v1.0/filters/1?fields=customerId,email,contactNo
   	@GetMapping({"/v1.0/filters", "/v1.1/filters"})
-      public String getFilteredCustomer(@RequestParam(name = "fields", required = false) 
-      String fields) 
+      public String getFilteredCustomer(@RequestParam(name = "filter", required = false) 
+      String filter) 
   	{
 
   		List<Customer> customerList = getCustomers();
-  		ObjectMapper mapper = Squiggly.init(new ObjectMapper(), fields);  
+  		ObjectMapper mapper = Squiggly.init(new ObjectMapper(), filter);  
   		return SquigglyUtils.stringify(mapper, customerList);
   		
       }

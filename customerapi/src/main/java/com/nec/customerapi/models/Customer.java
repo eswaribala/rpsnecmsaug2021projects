@@ -21,6 +21,10 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -41,10 +45,14 @@ public class Customer {
 	private long customerId;
 	@Embedded
 	private FullName name;
-	@Enumerated(EnumType.STRING)
-	@Column(name="Gender")
-	private Gender gender;
+	//@Enumerated(EnumType.STRING)
+	//@Column(name="Gender")
+	// Gender gender;
 	@DateTimeFormat(iso = ISO.DATE)
+	  @JsonDeserialize(using = LocalDateDeserializer.class)
+	  @JsonSerialize(using = LocalDateSerializer.class)
+	  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+
 	@Column(name="DOB")
 	private LocalDate dob;
 	@Column(name="Email")

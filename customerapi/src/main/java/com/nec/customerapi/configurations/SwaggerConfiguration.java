@@ -73,7 +73,7 @@ public class SwaggerConfiguration {
     }
     private ApiInfo getApiInfo() {
         return new ApiInfo(
-                "Product API",
+                "Customer API",
                 "App to demonstrate API Documentation",
                 "0.0.1-SNAPSHOT",
                 "Terms of Service",
