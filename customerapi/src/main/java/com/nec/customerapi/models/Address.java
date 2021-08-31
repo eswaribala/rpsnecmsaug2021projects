@@ -13,10 +13,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+
 import javax.persistence.ForeignKey;
 
 @Entity
 @Table(name="Address")
+@Data
+
 public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
