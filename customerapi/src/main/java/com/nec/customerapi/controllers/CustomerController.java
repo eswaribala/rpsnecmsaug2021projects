@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.bohnman.squiggly.Squiggly;
+import com.github.bohnman.squiggly.util.SquigglyUtils;
 import com.nec.customerapi.models.Customer;
 import com.nec.customerapi.services.CustomerService;
 
@@ -55,4 +59,17 @@ public class CustomerController {
     		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("customer"
     		    	+customerId+"not deleted");
     }
+    
+  //http://localhost:7070/customers/v1.0/filters/1?fields=customerId,email,contactNo
+  	@GetMapping({"/v1.0/filters", "/v1.1/filters"})
+      public String getFilteredCustomer(@RequestParam(name = "fields", required = false) 
+      String fields) 
+  	{
+
+  		List<Customer> customerList = getCustomers();
+  		ObjectMapper mapper = Squiggly.init(new ObjectMapper(), fields);  
+  		return SquigglyUtils.stringify(mapper, customerList);
+  		
+      }
+
 }
