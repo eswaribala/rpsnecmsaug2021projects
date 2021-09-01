@@ -118,7 +118,7 @@ public class CustomerController {
         customers = pageCustomers.getContent();
 
         Map<String, Object> response = new HashMap<>();
-        response.put("tutorials", customers);
+        response.put("customers", customers);
         response.put("currentPage", pageCustomers.getNumber());
         response.put("totalItems", pageCustomers.getTotalElements());
         response.put("totalPages", pageCustomers.getTotalPages());
