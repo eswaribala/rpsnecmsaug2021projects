@@ -1,0 +1,37 @@
+type Customer{
+  customerId: ID!
+  name: FullName
+  addressList: [Address]
+  mobileNumber: Long
+  dob: String
+  email: String 
+  gender:Gender 
+
+}
+
+enum Gender{
+MALE
+FEMALE
+TRANSGENDER
+
+}
+type Address{
+addressId: ID!
+city: String
+state: String
+doorNo: String
+streetName: String
+customer: Customer
+}
+
+type FullName{
+firstName: String
+middleName: String
+lastName: String
+
+}
+
+type Query {
+	findAllCustomers:[Customer]
+	findCustomer(customerId: ID):Customer
+}
