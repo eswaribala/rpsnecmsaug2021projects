@@ -57,6 +57,8 @@ public class CustomerController {
     @GetMapping({"/v1.0/{customerId}", "/v1.1/{customerId}"})
 
     public Customer getCustomerById(@PathVariable("customerId") long customerId) {
+    	
+    	//customer--> customer+ address (aggreagting the entities)
     	return this.customerService.getCustomerById(customerId);
     }
     

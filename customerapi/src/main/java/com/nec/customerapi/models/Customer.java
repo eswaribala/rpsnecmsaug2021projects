@@ -44,7 +44,8 @@ public class Customer {
 	@ApiModelProperty(position = 1, required = true, hidden=true, notes = "Auto generated column")
 	private long customerId;
 	@Embedded
-	private FullName name;
+	//value object
+	private FullName name; 
 	@Enumerated(EnumType.STRING)
 	@Column(name="Gender")
 	Gender gender;
