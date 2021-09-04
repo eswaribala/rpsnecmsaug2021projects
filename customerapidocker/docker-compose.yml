@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=necdb
+    volumes:
+      - /data/mysql1234
+    healthcheck:        
+        interval: 30s
+        timeout: 10s
+        retries: 5
+  
+  customer-app:
+    image: customer-app-v1
+    build:
+      context: ./
+      dockerfile: dockerfile
+    depends_on:
+      - mysql
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 7076:7070
+    volumes:
+      - /data/compose-app
+      
+      
+  

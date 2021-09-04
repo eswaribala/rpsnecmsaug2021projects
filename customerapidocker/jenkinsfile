@@ -1,0 +1,34 @@
+#!groovy
+pipeline{
+ agent any
+ 
+  tools {
+    maven 'maven'
+  }
+ 
+ stages{
+ 
+   stage("build"){
+   
+       steps{
+       
+          bat "mvn -f ./customerapidocker clean install -DskipTests"
+         
+         
+       }
+   
+   }
+   
+   stage("docker"){
+    
+      steps{
+         bat "cd customerapidocker & docker-compose up -d"
+      
+      }
+   }
+ 
+ }
+ 
+ 
+ 
+}
